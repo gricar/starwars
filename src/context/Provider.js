@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
+import fetchPlanets from '../services/fetchPlanets';
 
 function Provider({ children }) {
-  const [planetsList, setPlanetsList] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getPlanets = async () => {
+      const results = await fetchPlanets();
+      setData(results);
+    };
+    getPlanets();
+  }, [setData]);
 
   const context = {
-    planetsList, setPlanetsList,
+    data, setData,
   };
 
   return (
