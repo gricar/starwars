@@ -4,6 +4,13 @@ import Context from '../context/Context';
 function Table() {
   const { data, filteredPlanetsList, hasFilter } = useContext(Context);
 
+  const renderTableHeader = () => {
+    const tableHeader = Object.keys(data[0]).filter((column) => column !== 'residents');
+    return (
+      tableHeader.map((columnName, index) => <th key={ index }>{columnName}</th>)
+    );
+  };
+
   const renderTable = (planets) => (
     planets.map((planet, index) => {
       const {
@@ -37,45 +44,9 @@ function Table() {
         <caption>Starwars planets</caption>
         <thead>
           <tr>
-            <th>
-              Name
-            </th>
-            <th>
-              Rotation Period
-            </th>
-            <th>
-              Orbital Period
-            </th>
-            <th>
-              Diameter
-            </th>
-            <th>
-              Climate
-            </th>
-            <th>
-              Gravity
-            </th>
-            <th>
-              Terrain
-            </th>
-            <th>
-              Surface Water
-            </th>
-            <th>
-              Population
-            </th>
-            <th>
-              Films
-            </th>
-            <th>
-              Created
-            </th>
-            <th>
-              Edited
-            </th>
-            <th>
-              URL
-            </th>
+            {
+              data.length && renderTableHeader()
+            }
           </tr>
         </thead>
         <tbody>
