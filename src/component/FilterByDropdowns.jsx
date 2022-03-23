@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import Context from '../context/Context';
 
 function FilterByDropdowns() {
-  const { filtersArr, setFiltersArr } = useContext(Context);
-  const { filterByNumericValues } = filtersArr;
+  const { filterByNumericValues, setFilterByNumericValues } = useContext(Context);
 
   const [filterDropdowns, setFilterDropdowns] = useState({
     column: '',
@@ -19,10 +18,7 @@ function FilterByDropdowns() {
   };
 
   const handleSubmitFilter = () => {
-    console.log('set o filtro');
-    setFiltersArr({
-      filterByNumericValues: [...filterByNumericValues, filterDropdowns],
-    });
+    setFilterByNumericValues([...filterByNumericValues, filterDropdowns]);
   };
 
   return (

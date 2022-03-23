@@ -7,9 +7,7 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [filteredPlanetsList, setFilteredPlanetsList] = useState([]);
   const [hasFilter, setHasFilter] = useState(false);
-  const [filtersArr, setFiltersArr] = useState({
-    filterByNumericValues: [],
-  });
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   // didMount -> invoca API
   useEffect(() => {
@@ -27,8 +25,8 @@ function Provider({ children }) {
     setFilteredPlanetsList,
     hasFilter,
     setHasFilter,
-    setFiltersArr,
-    filtersArr,
+    filterByNumericValues,
+    setFilterByNumericValues,
   };
 
   return (
