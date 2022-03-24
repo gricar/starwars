@@ -18,31 +18,30 @@ function Provider({ children }) {
     getPlanets();
   }, [setData]);
 
-  const showPlanetsFiltered = (filterObj) => {
-    const { column, comparison, value } = filterObj;
-    switch (comparison) {
-    case 'maior que':
-      setFilteredPlanetsList(filteredPlanetsList
-        .filter((planet) => Number(planet[column]) > Number(value)));
-      setHasFilter(true);
-      break;
-    case 'menor que':
-      setFilteredPlanetsList(filteredPlanetsList
-        .filter((planet) => Number(planet[column]) < Number(value)));
-      setHasFilter(true);
-      break;
-    case 'igual a':
-      setFilteredPlanetsList(filteredPlanetsList
-        .filter((planet) => Number(planet[column]) === Number(value)));
-      setHasFilter(true);
-      break;
-    default:
-      setHasFilter(false);
-    }
-  };
-
+  // didUpdate -> atualiza o array de planetas filtrados pelo usuário
   useEffect(() => {
-    filterByNumericValues.forEach((filterObj) => showPlanetsFiltered(filterObj));
+    filterByNumericValues.forEach((filterObj) => {
+      const { column, comparison, value } = filterObj;
+      switch (comparison) {
+      case 'maior que':
+        setFilteredPlanetsList(filteredPlanetsList
+          .filter((planet) => Number(planet[column]) > Number(value)));
+        setHasFilter(true);
+        break;
+      case 'menor que':
+        setFilteredPlanetsList(filteredPlanetsList
+          .filter((planet) => Number(planet[column]) < Number(value)));
+        setHasFilter(true);
+        break;
+      case 'igual a':
+        setFilteredPlanetsList(filteredPlanetsList
+          .filter((planet) => Number(planet[column]) === Number(value)));
+        setHasFilter(true);
+        break;
+      default:
+        setHasFilter(false);
+      }
+    });
   }, [filterByNumericValues]);
 
   const context = {
