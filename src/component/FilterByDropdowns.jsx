@@ -17,8 +17,19 @@ function FilterByDropdowns() {
     });
   };
 
+  const disableFilterOption = () => {
+    const allOptions = document.querySelector('#column').options;
+    const arrAllOptions = Array.from(allOptions);
+    arrAllOptions.forEach((option) => {
+      if (option.value === filterDropdowns.column) {
+        option.remove();
+      }
+    });
+  };
+
   const handleSubmitFilter = () => {
     setFilterByNumericValues([...filterByNumericValues, filterDropdowns]);
+    disableFilterOption();
   };
 
   return (
