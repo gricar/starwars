@@ -2,10 +2,7 @@ import React, { useContext, useState } from 'react';
 import Context from '../context/Context';
 
 function FilterByDropdowns() {
-  const {
-    data, filterByNumericValues, setFilterByNumericValues,
-    setFilteredPlanetsList, setHasFilter,
-  } = useContext(Context);
+  const { filterByNumericValues, setFilterByNumericValues } = useContext(Context);
 
   const [filterDropdowns, setFilterDropdowns] = useState({
     column: 'population',
@@ -22,27 +19,6 @@ function FilterByDropdowns() {
 
   const handleSubmitFilter = () => {
     setFilterByNumericValues([...filterByNumericValues, filterDropdowns]);
-
-    const { column, comparison, value } = filterDropdowns;
-    switch (comparison) {
-    case 'maior que':
-      setFilteredPlanetsList(data
-        .filter((planet) => Number(planet[column]) > Number(value)));
-      setHasFilter(true);
-      break;
-    case 'menor que':
-      setFilteredPlanetsList(data
-        .filter((planet) => Number(planet[column]) < Number(value)));
-      setHasFilter(true);
-      break;
-    case 'igual a':
-      setFilteredPlanetsList(data
-        .filter((planet) => Number(planet[column]) === Number(value)));
-      setHasFilter(true);
-      break;
-    default:
-      console.log('nenhum');
-    }
   };
 
   return (
