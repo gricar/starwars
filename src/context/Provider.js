@@ -8,6 +8,10 @@ function Provider({ children }) {
   const [filteredPlanetsList, setFilteredPlanetsList] = useState([]);
   const [hasFilter, setHasFilter] = useState(false);
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [order, setOrder] = useState({
+    column: 'population',
+    sort: 'ASC',
+  });
 
   // didMount -> invoca API
   useEffect(() => {
@@ -53,6 +57,8 @@ function Provider({ children }) {
     setHasFilter,
     filterByNumericValues,
     setFilterByNumericValues,
+    order,
+    setOrder,
   };
 
   return (
