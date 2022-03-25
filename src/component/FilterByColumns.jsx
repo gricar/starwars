@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Context from '../context/Context';
 
-function FilterByDropdowns() {
+function FilterByColumns() {
   const { filterByNumericValues, setFilterByNumericValues } = useContext(Context);
 
   const [filterDropdowns, setFilterDropdowns] = useState({
@@ -82,4 +82,4 @@ function FilterByDropdowns() {
   );
 }
 
-export default FilterByDropdowns;
+export default FilterByColumns;
