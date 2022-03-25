@@ -21,6 +21,12 @@ function FilterHeader() {
     createFilterOption(filterObj.column);
   };
 
+  const removeAllFilters = () => {
+    setFilteredPlanetsList(data);
+    setFilterByNumericValues([]);
+    filterByNumericValues.forEach((filterObj) => createFilterOption(filterObj.column));
+  };
+
   return (
     <div>
       {
@@ -36,6 +42,13 @@ function FilterHeader() {
           );
         })
       }
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ removeAllFilters }
+      >
+        Remover filtros
+      </button>
     </div>
   );
 }
