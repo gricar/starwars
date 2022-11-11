@@ -17,6 +17,8 @@ function Provider({ children }) {
   useEffect(() => {
     const getPlanets = async () => {
       const results = await fetchPlanets();
+      /* const sortedData = results.sort((planetA, planetB) => planetA.name - planetB.name);
+      setData(sortedData); */
       setData(results);
     };
     getPlanets();

@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Context from '../context/Context';
 
 function OrderColumn() {
-  const { order, setOrder } = useContext(Context);
+  const {
+    order, setOrder, filteredPlanetsList, setFilteredPlanetsList, setHasFilter,
+  } = useContext(Context);
 
   const handleOrderChange = ({ target: { name, value } }) => {
     setOrder({
@@ -10,6 +12,25 @@ function OrderColumn() {
       [name]: value,
     });
   };
+
+  const handleSubmitOrder = () => {
+    const { column, sort } = order;
+    if (sort === 'ASC') {
+      const orderedList = filteredPlanetsList
+        .sort((planetA, planetB) => planetB[column] - planetA[column]);
+      setFilteredPlanetsList(orderedList);
+      setHasFilter(true);
+    } else if (sort === 'DESC') {
+      const orderedList = filteredPlanetsList
+        .sort((planetA, planetB) => planetA[column] - planetB[column]);
+      setFilteredPlanetsList(orderedList);
+      setHasFilter(true);
+    }
+  };
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <form>
@@ -53,8 +74,8 @@ function OrderColumn() {
       </label>
       <button
         type="button"
-        data-testid="button-filter"
-        // onClick={ handleSubmitOrder }
+        data-testid="column-sort-button"
+        onClick={ handleSubmitOrder }
       >
         Ordenar
       </button>
